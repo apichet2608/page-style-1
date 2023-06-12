@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -12,6 +12,8 @@ import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { format } from "date-fns";
+import Autocomplete from "@mui/material/Autocomplete";
+import axios from "axios";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -61,6 +63,63 @@ export default function QuantitySelect() {
     console.log(stopDateTimestamp);
   };
 
+  const [selectedFactory, setSelectedFactory] = useState(null);
+  const [selectedProcess, setSelectedProcess] = useState(null);
+  const [selectedMachine, setSelectedMachine] = useState(null);
+
+  const [distinctFactory, setDistinctFactory] = useState([]);
+  const [distinctProcess, setDistinctProcess] = useState([]);
+  const [distinctMachine, setDistinctMachine] = useState([]);
+
+  const fetchDistinctFactory = async () => {
+    try {
+      const response = await axios.get("http://your-api-url/distinctFactory");
+      const distinctFactory = response.data;
+      setDistinctFactory(distinctFactory);
+    } catch (error) {
+      console.error(`Error fetching distinct factories: ${error}`);
+    }
+  };
+
+  const fetchDistinctProcess = async () => {
+    try {
+      const response = await axios.get("http://your-api-url/distinctProcess");
+      const distinctProcess = response.data;
+      setDistinctProcess(distinctProcess);
+    } catch (error) {
+      console.error(`Error fetching distinct processes: ${error}`);
+    }
+  };
+
+  const fetchDistinctMachine = async () => {
+    try {
+      const response = await axios.get("http://your-api-url/distinctMachine");
+      const distinctMachine = response.data;
+      setDistinctMachine(distinctMachine);
+    } catch (error) {
+      console.error(`Error fetching distinct machines: ${error}`);
+    }
+  };
+
+  useEffect(() => {
+    fetchDistinctFactory();
+    fetchDistinctProcess();
+    fetchDistinctMachine();
+  }, []);
+  const handleFactoryChange = (event, newValue) => {
+    console.log(newValue);
+    setSelectedFactory(newValue);
+  };
+
+  const handleProcessChange = (event, newValue) => {
+    console.log(newValue);
+    setSelectedProcess(newValue);
+  };
+
+  const handleMachineChange = (event, newValue) => {
+    console.log(newValue);
+    setSelectedMachine(newValue);
+  };
   return (
     <React.Fragment>
       <CssBaseline />
@@ -126,6 +185,62 @@ export default function QuantitySelect() {
                   InputLabelProps={{
                     shrink: true,
                   }}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={3} md={3}>
+              <Item>
+                <Autocomplete
+                  options={distinctFactory}
+                  getOptionLabel={(option) => option && option.factory_code}
+                  value={selectedFactory}
+                  onChange={handleFactoryChange}
+                  sx={{ width: "100%" }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="เลือก Factory"
+                      variant="outlined"
+                    />
+                  )}
+                />
+              </Item>
+            </Grid>
+
+            <Grid item xs={3} md={3}>
+              <Item>
+                <Autocomplete
+                  options={distinctProcess}
+                  getOptionLabel={(option) => option && option.process_code}
+                  value={selectedProcess}
+                  onChange={handleProcessChange}
+                  sx={{ width: "100%" }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="เลือก Process"
+                      variant="outlined"
+                    />
+                  )}
+                />
+              </Item>
+            </Grid>
+
+            <Grid item xs={3} md={3}>
+              <Item>
+                <Autocomplete
+                  options={distinctMachine}
+                  getOptionLabel={(option) => option && option.mc_code}
+                  value={selectedMachine}
+                  onChange={handleMachineChange}
+                  sx={{ width: "100%" }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="เลือก Machine"
+                      variant="outlined"
+                    />
+                  )}
                 />
               </Item>
             </Grid>
