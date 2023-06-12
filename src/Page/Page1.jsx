@@ -25,9 +25,31 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function QuantitySelect() {
   const [quantity, setQuantity] = useState(24);
+  const [startDatewithtime, setstartDatewithtime] = useState("");
+  const [stopDatewithtime, setstopDatewithtime] = useState("");
   const [startDate, setStartDate] = useState("");
   const [stopDate, setStopDate] = useState("");
 
+  const handleStartDateChange = (event) => {
+    const newStartDate = event.target.value;
+    const startDate = new Date(newStartDate);
+
+    // แปลงเป็น timestamp ตามรูปแบบที่ต้องการ
+    const startDateTimestamp = format(startDate, "yyyy-MM-dd");
+
+    setStartDate(startDateTimestamp);
+    console.log(startDateTimestamp);
+  };
+  const handleStopDateChange = (event) => {
+    const newStopDate = event.target.value;
+    const stopDate = new Date(newStopDate);
+
+    // แปลงเป็น timestamp ตามรูปแบบที่ต้องการ
+    const stopDateTimestamp = format(stopDate, "yyyy-MM-dd");
+
+    setStopDate(stopDateTimestamp);
+    console.log(stopDateTimestamp);
+  };
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.value);
     setQuantity(newQuantity);
@@ -41,26 +63,32 @@ export default function QuantitySelect() {
     setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
   };
 
-  const handleStartDateChange = (event) => {
-    const newStartDate = event.target.value;
-    const startDate = new Date(newStartDate);
+  const handlestartDatewithtimeChange = (event) => {
+    const newstartDatewithtime = event.target.value;
+    const startDatewithtime = new Date(newstartDatewithtime);
 
     // แปลงเป็น timestamp ตามรูปแบบที่ต้องการ
-    const startDateTimestamp = format(startDate, "yyyy-MM-dd HH:mm:ss.SSS");
+    const startDatewithtimeTimestamp = format(
+      startDatewithtime,
+      "yyyy-MM-dd HH:mm:ss.SSS"
+    );
 
-    setStartDate(startDateTimestamp);
-    console.log(startDateTimestamp);
+    setstartDatewithtime(startDatewithtimeTimestamp);
+    console.log(startDatewithtimeTimestamp);
   };
 
-  const handleStopDateChange = (event) => {
-    const newStopDate = event.target.value;
-    const stopDate = new Date(newStopDate);
+  const handlestopDatewithtimeChange = (event) => {
+    const newstopDatewithtime = event.target.value;
+    const stopDatewithtime = new Date(newstopDatewithtime);
 
     // แปลงเป็น timestamp ตามรูปแบบที่ต้องการ
-    const stopDateTimestamp = format(stopDate, "yyyy-MM-dd HH:mm:ss.SSS");
+    const stopDatewithtimeTimestamp = format(
+      stopDatewithtime,
+      "yyyy-MM-dd HH:mm:ss.SSS"
+    );
 
-    setStopDate(stopDateTimestamp);
-    console.log(stopDateTimestamp);
+    setstopDatewithtime(stopDatewithtimeTimestamp);
+    console.log(stopDatewithtimeTimestamp);
   };
 
   const [selectedFactory, setSelectedFactory] = useState(null);
@@ -106,6 +134,7 @@ export default function QuantitySelect() {
     fetchDistinctProcess();
     fetchDistinctMachine();
   }, []);
+
   const handleFactoryChange = (event, newValue) => {
     console.log(newValue);
     setSelectedFactory(newValue);
@@ -120,6 +149,7 @@ export default function QuantitySelect() {
     console.log(newValue);
     setSelectedMachine(newValue);
   };
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -159,12 +189,12 @@ export default function QuantitySelect() {
             <Grid item xs={3} md={3}>
               <Item>
                 <TextField
-                  id="start-date"
-                  label="Start Date"
+                  id="start-date-withtime"
+                  label="Start Date-withtime"
                   type="datetime-local"
                   // type="date"
-                  value={startDate}
-                  onChange={handleStartDateChange}
+                  value={startDatewithtime}
+                  onChange={handlestartDatewithtimeChange}
                   sx={{ width: "100%" }}
                   InputLabelProps={{
                     shrink: true,
@@ -175,12 +205,12 @@ export default function QuantitySelect() {
             <Grid item xs={3} md={3}>
               <Item>
                 <TextField
-                  id="stop-date"
-                  label="Stop Date"
+                  id="stop-date-withtime"
+                  label="Stop Date-withtime"
                   type="datetime-local"
                   // type="date"
-                  value={stopDate}
-                  onChange={handleStopDateChange}
+                  value={stopDatewithtime}
+                  onChange={handlestopDatewithtimeChange}
                   sx={{ width: "100%" }}
                   InputLabelProps={{
                     shrink: true,
@@ -241,6 +271,37 @@ export default function QuantitySelect() {
                       variant="outlined"
                     />
                   )}
+                />
+              </Item>
+            </Grid>
+
+            <Grid item xs={3} md={3}>
+              <Item>
+                <TextField
+                  id="start-date"
+                  label="Start Date"
+                  type="date"
+                  value={startDate}
+                  onChange={handleStartDateChange}
+                  sx={{ width: "100%" }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={3} md={3}>
+              <Item>
+                <TextField
+                  id="stop-date"
+                  label="Stop Date"
+                  type="date"
+                  value={stopDate}
+                  onChange={handleStopDateChange}
+                  sx={{ width: "100%" }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               </Item>
             </Grid>
