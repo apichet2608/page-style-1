@@ -1,73 +1,65 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import CssBaseline from "@mui/material/CssBaseline";
+import Container from "@mui/material/Container";
 
-const EmailForm = () => {
-  const [senderHead, setSenderHead] = useState("");
-  const [senderEmail, setSenderEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [response, setResponse] = useState("");
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+export default function QuantitySelect() {
+  const [maxWidth, setMaxWidth] = useState("xl");
 
-    try {
-      const encodedSenderHead = encodeURIComponent(senderHead);
-      const encodedSenderEmail = encodeURIComponent(senderEmail);
-      const encodedMessage = encodeURIComponent(message);
+  React.useEffect(() => {
+    const handleResize = () => {
+      // ทำการตรวจสอบขนาดหน้าจอและกำหนด maxWidth ที่เหมาะสม
+      const screenWidth = window.innerWidth;
+      console.log(screenWidth);
+      if (screenWidth < 600) {
+        setMaxWidth("xl");
+      } else if (screenWidth < 960) {
+        setMaxWidth("sm");
+      } else if (screenWidth < 1280) {
+        setMaxWidth("md");
+      } else if (screenWidth < 1920) {
+        setMaxWidth("lg");
+      } else {
+        setMaxWidth("xl");
+      }
+    };
 
-      const response = await fetch(
-        `http://10.17.77.189:3000/send-email?senderHead=${encodedSenderHead}&senderEmail=${encodedSenderEmail}&message=${encodedMessage}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+    // เพิ่ม event listener เมื่อขนาดหน้าจอเปลี่ยนแปลง
+    window.addEventListener("resize", handleResize);
 
-      const data = await response.json();
-      setResponse(data.message);
-    } catch (error) {
-      console.error("Error sending email:", error);
-      setResponse("Failed to send email");
-    }
-  };
-
+    // คำสั่งที่ใช้เมื่อคอมโพเนนต์ถูก unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
-    <div>
-      <h1>Email Form</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="senderHead">Head:</label>
-          <input
-            type="text"
-            id="senderHead"
-            value={senderHead}
-            onChange={(e) => setSenderHead(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="senderEmail">Recipient Emails:</label>
-          <input
-            type="text"
-            id="senderEmail"
-            value={senderEmail}
-            onChange={(e) => setSenderEmail(e.target.value)}
-          />
-          <p>Separate multiple emails with commas (,)</p>
-        </div>
-        <div>
-          <label htmlFor="message">Message:</label>
-          <textarea
-            id="message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          ></textarea>
-        </div>
-        <button type="submit">Send Email</button>
-      </form>
-      {response && <p>{response}</p>}
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <Container maxWidth={maxWidth}>
+        <Box maxWidth="xl" sx={{ height: 800, width: "100%" }}>
+          <Grid container spacing={2}>
+            <Grid item xl={3} lg={3} md={3}></Grid>
+            <Grid item xl={3} lg={3} md={3}></Grid>
+            <Grid item xl={3} lg={3} md={3}></Grid>
+            <Grid item xl={3} lg={3} md={3}></Grid>
+            <Grid item xl={3} lg={3} md={3}></Grid>
+            <Grid item xl={3} lg={3} md={3}></Grid>
+            <Grid item xl={3} lg={3} md={3}></Grid>
+            <Grid item xl={3} lg={3} md={3}></Grid>
+          </Grid>
+        </Box>
+      </Container>
+    </React.Fragment>
   );
-};
-
-export default EmailForm;
+}

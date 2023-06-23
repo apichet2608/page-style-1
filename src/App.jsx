@@ -25,6 +25,8 @@ import Welcome from "./Page/Welcome-Page"; // นำเข้าคอมโพ�
 import PollIcon from "@mui/icons-material/Poll";
 import Fuji from "../public/Fuji.png"; // นำเข้าคอมโพเนนต์ Page1 จากไฟล์ "Page1.js" ในโฟลเดอร์เดียวกัน
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
+import AcUnitIcon from "@mui/icons-material/AcUnit";
+
 const drawerWidth = 240; // กำหนดค่าความกว้างของ Drawer เป็น 240
 
 // สร้าง mixin สำหรับสไตล์ของ Drawer เมื่อถูกเปิด
@@ -190,10 +192,10 @@ export default function MiniDrawer() {
                       justifyContent: "center",
                     }}
                   >
-                    {index % 2 === 0 ? (
+                    {text === "RLSB-Temperature" ? (
                       <StackedLineChartIcon />
                     ) : (
-                      <StackedLineChartIcon />
+                      <AcUnitIcon />
                     )}
                   </ListItemIcon>
                   <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
