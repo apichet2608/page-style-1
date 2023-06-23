@@ -1,0 +1,23 @@
+.item {
+  background-color: #ffffff;
+  /* ส่วนอื่น ๆ ของรหัส CSS */
+}
+
+.card {
+  min-width: 275px;
+  /* ส่วนอื่น ๆ ของรหัส CSS */
+}
+
+.CardContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  outline: #4caf50 solid 10px;
+  color: blue;
+  /* ส่วนอื่น ๆ ของรหัส CSS */
+}
+
+.CardActions {
+  background-color: #fafafa;
+}
+/* อื่น ๆ ... */

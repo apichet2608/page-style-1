@@ -174,7 +174,7 @@ export default function MiniDrawer() {
 
           <Divider />
           <List>
-            {["RLSB-Temperature"].map((text, index) => (
+            {["1", "2"].map((text, index) => (
               <ListItem key={text} disablePadding sx={{ display: "block" }}>
                 <ListItemButton
                   sx={{
@@ -192,11 +192,7 @@ export default function MiniDrawer() {
                       justifyContent: "center",
                     }}
                   >
-                    {text === "RLSB-Temperature" ? (
-                      <StackedLineChartIcon />
-                    ) : (
-                      <AcUnitIcon />
-                    )}
+                    {text === "1" ? <StackedLineChartIcon /> : <AcUnitIcon />}
                   </ListItemIcon>
                   <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
@@ -210,7 +206,7 @@ export default function MiniDrawer() {
           <DrawerHeader />
           <Routes>
             <Route path="/" element={<Welcome />} />
-            <Route path="/page/rlsb-temperature" element={<Page1 />} />
+            <Route path="/page/1" element={<Page1 />} />
           </Routes>
         </Box>
       </Box>

@@ -1,0 +1,42 @@
+.item {
+  background-color: #ffffff;
+  /* ส่วนอื่น ๆ ของรหัส CSS */
+  /* animation-name: example;
+  animation-duration: 4s; */
+}
+/* @keyframes example {
+  0% {
+    background-color: red;
+  }
+  25% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: blue;
+  }
+  100% {
+    background-color: green;
+  }
+} */
+
+.card {
+  min-width: 275px;
+  /* ส่วนอื่น ๆ ของรหัส CSS */
+}
+
+.CardContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* outline: #546e7a solid 10px; */
+  color: #263238;
+  /* background-image: linear-gradient(red, yellow); */
+  /* ส่วนอื่น ๆ ของรหัส CSS */
+}
+
+.CardActions {
+  background-color: #fafafa;
+  justify-content: right;
+}
+
+/* อื่น ๆ ... */
