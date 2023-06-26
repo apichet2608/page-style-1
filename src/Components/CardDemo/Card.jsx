@@ -53,37 +53,33 @@ export default function QuantitySelect() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="xl">
-        <Box className="item" sx={{ height: 800, width: "100%" }}>
-          <Grid container spacing={2}>
-            <Grid item xl={3} lg={3} md={3}>
-              <Card className="card">
-                <CardContent className="CardContent">
-                  <div>
-                    <Typography variant="h6" component="div">
-                      Card Title
-                    </Typography>
-                    <Typography variant="h4" component="div">
-                      Card Value
-                    </Typography>
-                  </div>
-                  <Chart
-                    options={sparklineOptions}
-                    series={sparklineOptions.series}
-                    type={sparklineOptions.chart.type}
-                    width={100}
-                    height={50}
-                  />
-                </CardContent>
-                <CardActions className="CardActions">
-                  <Button size="small">Learn More</Button>
-                </CardActions>
-              </Card>
-            </Grid>
-            {/* Add more Card components here */}
-          </Grid>
-        </Box>
-      </Container>
+      <Grid container spacing={2}>
+        <Grid item xl={3} lg={3} md={3}>
+          <Card className="card">
+            <CardContent className="CardContent">
+              <div>
+                <Typography variant="h6" component="div">
+                  Card Title
+                </Typography>
+                <Typography variant="h4" component="div">
+                  Card Value
+                </Typography>
+              </div>
+              <Chart
+                options={sparklineOptions}
+                series={sparklineOptions.series}
+                type={sparklineOptions.chart.type}
+                width={100}
+                height={50}
+              />
+            </CardContent>
+            <CardActions className="CardActions">
+              <Button size="small">Learn More</Button>
+            </CardActions>
+          </Card>
+        </Grid>
+        {/* Add more Card components here */}
+      </Grid>
     </React.Fragment>
   );
 }

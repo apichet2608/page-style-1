@@ -21,6 +21,7 @@ import "./QuantitySelect.css"; // Import ไฟล์ CSS
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -200,86 +201,73 @@ export default function QuantitySelect() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="xl">
-        <Box className="item" sx={{ height: 800, width: "100%" }}>
-          <Grid container spacing={2}>
-            {apiData.map((item) => (
-              <Grid item xl={3} lg={3} md={3} key={item.status}>
-                <Card className="card">
-                  <CardContent className="CardContent">
-                    <div>
-                      <Typography
-                        variant="h5"
-                        component="div"
-                        fontWeight="bold"
-                      >
-                        {item.status}
-                      </Typography>
-                      <Typography
-                        variant="h4"
-                        component="div"
-                        fontWeight="bold"
-                      >
-                        {item.count}{" "}
-                        {item.count > 1000 && <KeyboardArrowUpIcon />}
-                        {item.count < 500 && <KeyboardArrowDownIcon />}
-                        {item.count >= 501 && item.count <= 999 && (
-                          <HorizontalRuleIcon />
-                        )}
-                      </Typography>
-                    </div>
-                    <Chart
-                      options={sparklineOptions}
-                      series={sparklineOptions.series}
-                      type={sparklineOptions.chart.type}
-                      width={100}
-                      height={50}
-                    />
-                  </CardContent>
-                  <CardActions className="CardActions">
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                      >
-                        <Typography>Description</Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Suspendisse malesuada lacus ex, sit amet blandit
-                          leo lobortis eget.
-                        </Typography>
-                      </AccordionDetails>
-                    </Accordion>
-                    <div>
-                      <Button
-                        size="small"
-                        onClick={() => handleButtonClick(item.status)}
-                      >
-                        View <PlayArrowIcon />
-                      </Button>
-                    </div>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-            {dataapitable && (
-              <Grid item xl={12} lg={12} md={12} mt={2.5}>
-                <DataGrid
-                  rows={dataapitable}
-                  columns={columns_fix}
-                  pagination
-                  pageSize={5}
-                  // checkboxlelection
-                  sx={{ height: 650, width: "100%" }}
+      <Grid container spacing={2}>
+        {apiData.map((item) => (
+          <Grid item xl={3} lg={3} md={3} key={item.status}>
+            <Card className="card">
+              <CardContent className="CardContent">
+                <div>
+                  <Typography variant="h5" component="div" fontWeight="bold">
+                    {item.status}
+                  </Typography>
+                  <Typography variant="h4" component="div" fontWeight="bold">
+                    {item.count} {item.count > 1000 && <KeyboardArrowUpIcon />}
+                    {item.count < 500 && <KeyboardArrowDownIcon />}
+                    {item.count >= 501 && item.count <= 999 && (
+                      <HorizontalRuleIcon />
+                    )}
+                  </Typography>
+                </div>
+                <Chart
+                  options={sparklineOptions}
+                  series={sparklineOptions.series}
+                  type={sparklineOptions.chart.type}
+                  width={100}
+                  height={50}
                 />
-              </Grid>
-            )}
+              </CardContent>
+              <CardActions className="CardActions">
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography>Description</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Suspendisse malesuada lacus ex, sit amet blandit leo
+                      lobortis eget.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <div>
+                  <Button
+                    size="small"
+                    onClick={() => handleButtonClick(item.status)}
+                  >
+                    View <PlayArrowIcon />
+                  </Button>
+                </div>
+              </CardActions>
+            </Card>
           </Grid>
-        </Box>
-      </Container>
+        ))}
+        {dataapitable && (
+          <Grid item xl={12} lg={12} md={12} mt={2.5}>
+            <DataGrid
+              rows={dataapitable}
+              columns={columns_fix}
+              pagination
+              pageSize={5}
+              // checkboxlelection
+              sx={{ height: 650, width: "100%" }}
+            />
+          </Grid>
+        )}
+      </Grid>
     </React.Fragment>
   );
 }

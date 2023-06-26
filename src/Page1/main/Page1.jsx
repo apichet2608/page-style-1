@@ -47,16 +47,16 @@ export default function QuantitySelect() {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth={maxWidth}>
-        <Box maxWidth="xl" sx={{ height: 800, width: "100%" }}>
+        <Box maxWidth={maxWidth} sx={{ height: 800, width: "100%" }}>
           <Grid container spacing={2}>
-            <Grid item xl={3} lg={3} md={3}></Grid>
-            <Grid item xl={3} lg={3} md={3}></Grid>
-            <Grid item xl={3} lg={3} md={3}></Grid>
-            <Grid item xl={3} lg={3} md={3}></Grid>
-            <Grid item xl={3} lg={3} md={3}></Grid>
-            <Grid item xl={3} lg={3} md={3}></Grid>
-            <Grid item xl={3} lg={3} md={3}></Grid>
-            <Grid item xl={3} lg={3} md={3}></Grid>
+            <Grid item xl={12} lg={12} md={12}></Grid>
+            <Grid item xl={12} lg={12} md={12}></Grid>
+            <Grid item xl={12} lg={12} md={12}></Grid>
+            <Grid item xl={12} lg={12} md={12}></Grid>
+            <Grid item xl={12} lg={12} md={12}></Grid>
+            <Grid item xl={12} lg={12} md={12}></Grid>
+            <Grid item xl={12} lg={12} md={12}></Grid>
+            <Grid item xl={12} lg={12} md={12}></Grid>
           </Grid>
         </Box>
       </Container>

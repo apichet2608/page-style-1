@@ -153,161 +153,156 @@ export default function QuantitySelect() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="xl">
-        <Box maxWidth="xl" sx={{ height: 800, width: "100%" }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={3}>
-              <TextField
-                type="number"
-                value={quantity}
-                onChange={handleQuantityChange}
-                label="Hr"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconButton onClick={handleDecrement}>
-                        <RemoveIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={handleIncrement}>
-                        <AddIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                  inputProps: {
-                    style: {
-                      textAlign: "center",
-                    },
+      <Grid container spacing={2}>
+        <Grid item xl={3} lg={3}>
+          <Item>
+            <TextField
+              type="number"
+              value={quantity}
+              onChange={handleQuantityChange}
+              label="Hr"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <IconButton onClick={handleDecrement}>
+                      <RemoveIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={handleIncrement}>
+                      <AddIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+                inputProps: {
+                  style: {
+                    textAlign: "center",
                   },
-                }}
-                sx={{ width: "100%" }}
-              />
-            </Grid>
-            <Grid item xs={3} md={3}>
-              <Item>
+                },
+              }}
+              sx={{ width: "100%" }}
+            />
+          </Item>
+        </Grid>
+        <Grid item xl={3} lg={3}>
+          <Item>
+            <TextField
+              id="start-date-withtime"
+              label="Start Date-withtime"
+              type="datetime-local"
+              // type="date"
+              value={startDatewithtime}
+              onChange={handlestartDatewithtimeChange}
+              sx={{ width: "100%" }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Item>
+        </Grid>
+        <Grid item xl={3} lg={3}>
+          <Item>
+            <TextField
+              id="stop-date-withtime"
+              label="Stop Date-withtime"
+              type="datetime-local"
+              // type="date"
+              value={stopDatewithtime}
+              onChange={handlestopDatewithtimeChange}
+              sx={{ width: "100%" }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Item>
+        </Grid>
+        <Grid item xl={3} lg={3}>
+          <Item>
+            <Autocomplete
+              options={distinctFactory}
+              getOptionLabel={(option) => option && option.factory_code}
+              value={selectedFactory}
+              onChange={handleFactoryChange}
+              sx={{ width: "100%" }}
+              renderInput={(params) => (
                 <TextField
-                  id="start-date-withtime"
-                  label="Start Date-withtime"
-                  type="datetime-local"
-                  // type="date"
-                  value={startDatewithtime}
-                  onChange={handlestartDatewithtimeChange}
-                  sx={{ width: "100%" }}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
+                  {...params}
+                  label="เลือก Factory"
+                  variant="outlined"
                 />
-              </Item>
-            </Grid>
-            <Grid item xs={3} md={3}>
-              <Item>
+              )}
+            />
+          </Item>
+        </Grid>
+        <Grid item xl={3} lg={3}>
+          <Item>
+            <Autocomplete
+              options={distinctProcess}
+              getOptionLabel={(option) => option && option.process_code}
+              value={selectedProcess}
+              onChange={handleProcessChange}
+              sx={{ width: "100%" }}
+              renderInput={(params) => (
                 <TextField
-                  id="stop-date-withtime"
-                  label="Stop Date-withtime"
-                  type="datetime-local"
-                  // type="date"
-                  value={stopDatewithtime}
-                  onChange={handlestopDatewithtimeChange}
-                  sx={{ width: "100%" }}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
+                  {...params}
+                  label="เลือก Process"
+                  variant="outlined"
                 />
-              </Item>
-            </Grid>
-            <Grid item xs={3} md={3}>
-              <Item>
-                <Autocomplete
-                  options={distinctFactory}
-                  getOptionLabel={(option) => option && option.factory_code}
-                  value={selectedFactory}
-                  onChange={handleFactoryChange}
-                  sx={{ width: "100%" }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="เลือก Factory"
-                      variant="outlined"
-                    />
-                  )}
-                />
-              </Item>
-            </Grid>
-
-            <Grid item xs={3} md={3}>
-              <Item>
-                <Autocomplete
-                  options={distinctProcess}
-                  getOptionLabel={(option) => option && option.process_code}
-                  value={selectedProcess}
-                  onChange={handleProcessChange}
-                  sx={{ width: "100%" }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="เลือก Process"
-                      variant="outlined"
-                    />
-                  )}
-                />
-              </Item>
-            </Grid>
-
-            <Grid item xs={3} md={3}>
-              <Item>
-                <Autocomplete
-                  options={distinctMachine}
-                  getOptionLabel={(option) => option && option.mc_code}
-                  value={selectedMachine}
-                  onChange={handleMachineChange}
-                  sx={{ width: "100%" }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="เลือก Machine"
-                      variant="outlined"
-                    />
-                  )}
-                />
-              </Item>
-            </Grid>
-
-            <Grid item xs={3} md={3}>
-              <Item>
+              )}
+            />
+          </Item>
+        </Grid>
+        <Grid item xl={3} lg={3}>
+          <Item>
+            <Autocomplete
+              options={distinctMachine}
+              getOptionLabel={(option) => option && option.mc_code}
+              value={selectedMachine}
+              onChange={handleMachineChange}
+              sx={{ width: "100%" }}
+              renderInput={(params) => (
                 <TextField
-                  id="start-date"
-                  label="Start Date"
-                  type="date"
-                  value={startDate}
-                  onChange={handleStartDateChange}
-                  sx={{ width: "100%" }}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
+                  {...params}
+                  label="เลือก Machine"
+                  variant="outlined"
                 />
-              </Item>
-            </Grid>
-            <Grid item xs={3} md={3}>
-              <Item>
-                <TextField
-                  id="stop-date"
-                  label="Stop Date"
-                  type="date"
-                  value={stopDate}
-                  onChange={handleStopDateChange}
-                  sx={{ width: "100%" }}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </Item>
-            </Grid>
-          </Grid>
-        </Box>
-      </Container>
+              )}
+            />
+          </Item>
+        </Grid>
+        <Grid item xl={3} lg={3}>
+          <Item>
+            <TextField
+              id="start-date"
+              label="Start Date"
+              type="date"
+              value={startDate}
+              onChange={handleStartDateChange}
+              sx={{ width: "100%" }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Item>
+        </Grid>
+        <Grid item xl={3} lg={3}>
+          <Item>
+            <TextField
+              id="stop-date"
+              label="Stop Date"
+              type="date"
+              value={stopDate}
+              onChange={handleStopDateChange}
+              sx={{ width: "100%" }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Item>
+        </Grid>
+      </Grid>
     </React.Fragment>
   );
 }
