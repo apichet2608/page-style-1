@@ -23,7 +23,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function QuantitySelect() {
   const exampleData = [5, 10, 8, 12, 6, 14, 10, 15, 12, 10];
-
   const sparklineOptions = {
     chart: {
       type: "line",

@@ -20,7 +20,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom"; // นำเข้าคอมโพเนนต์สำหรับการจัดการเส้นทางในแ
-import Page1 from "./Page/Page1"; // นำเข้าคอมโพเนนต์ Page1 จากไฟล์ "Page1.js" ในโฟลเดอร์เดียวกัน
+import Page1 from "./Page1/main/Page1"; // นำเข้าคอมโพเนนต์ Page1 จากไฟล์ "Page1.js" ในโฟลเดอร์เดียวกัน
 import Welcome from "./Page/Welcome-Page"; // นำเข้าคอมโพเนนต์ Page1 จากไฟล์ "Page1.js" ในโฟลเดอร์เดียวกัน
 import PollIcon from "@mui/icons-material/Poll";
 import Fuji from "../public/Fuji.png"; // นำเข้าคอมโพเนนต์ Page1 จากไฟล์ "Page1.js" ในโฟลเดอร์เดียวกัน
@@ -149,7 +149,7 @@ export default function MiniDrawer() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              LPI
+              DEMO
             </Typography>
           </Toolbar>
         </AppBar>

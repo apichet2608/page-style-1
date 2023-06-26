@@ -41,8 +41,6 @@ export default function QuantitySelect() {
       .then((data) => setApiData(data));
   }, []);
 
-  const exampleData = [5, 10, 8, 12, 6, 14, 10, 15, 12, 10];
-
   const sparklineOptions = {
     series: [
       {
