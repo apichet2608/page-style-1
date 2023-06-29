@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
-import CCard from "../../Components/CardDemo/Card-withapi copy";
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -49,9 +49,7 @@ export default function QuantitySelect() {
       <Container maxWidth={maxWidth}>
         <Box maxWidth={maxWidth} sx={{ height: 800, width: "100%" }}>
           <Grid container spacing={2}>
-            <Grid item xl={12} lg={12} md={12}>
-              {/* <CCard /> */}
-            </Grid>
+            <Grid item xl={12} lg={12} md={12}></Grid>
             <Grid item xl={12} lg={12} md={12}></Grid>
             <Grid item xl={12} lg={12} md={12}></Grid>
             <Grid item xl={12} lg={12} md={12}></Grid>
