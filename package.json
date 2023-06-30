@@ -20,6 +20,8 @@
     "apexcharts": "^3.41.0",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.1",
     "papaparse": "^5.4.1",
     "plotly.js": "^2.23.0",
     "react": "^18.2.0",
@@ -27,8 +29,9 @@
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-plotly.js": "^2.6.0",
-    "react-router-dom": "^6.11.1",
+    "react-router-dom": "^6.14.0",
     "react-sparklines": "^1.7.0",
+    "sort-by": "^1.2.0",
     "styled-components": "^5.3.10"
   },
   "devDependencies": {

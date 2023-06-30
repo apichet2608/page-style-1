@@ -27,6 +27,9 @@ import Fuji from "../public/Fuji.png"; // นำเข้าคอมโพเ�
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 
+import Login from "../src/Page1/main/login";
+import Register from "../src/Page1/main/register";
+
 const drawerWidth = 240; // กำหนดค่าความกว้างของ Drawer เป็น 240
 
 // สร้าง mixin สำหรับสไตล์ของ Drawer เมื่อถูกเปิด
@@ -174,7 +177,7 @@ export default function MiniDrawer() {
 
           <Divider />
           <List>
-            {["1", "2"].map((text, index) => (
+            {["1"].map((text, index) => (
               <ListItem key={text} disablePadding sx={{ display: "block" }}>
                 <ListItemButton
                   sx={{
@@ -206,7 +209,9 @@ export default function MiniDrawer() {
           <DrawerHeader />
           <Routes>
             <Route path="/" element={<Welcome />} />
-            <Route path="/page/1" element={<Page1 />} />
+            <Route path="/page/1" element={<Login />} />
+            <Route path="/page/2" element={<Page1 />} />
+            <Route path="/page/Register" element={<Register />} />
           </Routes>
         </Box>
       </Box>

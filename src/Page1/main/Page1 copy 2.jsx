@@ -29,7 +29,6 @@ function App() {
           if (response.ok) {
             setTokenValid(true);
             console.log(data.status);
-            setUserData(data.user);
             navigate("/page/2");
           } else {
             setTokenValid(false);
@@ -47,6 +46,10 @@ function App() {
     checkTokenValidity();
   }, []);
 
+  useEffect(() => {
+    setUserData(location.state?.userData);
+  }, [location.state]);
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/page/1");
@@ -55,6 +58,7 @@ function App() {
   return (
     <div>
       <h2>TEST</h2>
+      <button onClick={handleLogout}>ออกจากระบบ</button>
       {tokenValid ? (
         <div>
           <p>โทเค็นถูกต้องและไม่หมดอายุ</p>
@@ -63,9 +67,6 @@ function App() {
               <h3>ข้อมูลผู้ใช้</h3>
               <p>ชื่อผู้ใช้: {userData.username}</p>
               <p>อีเมล์: {userData.email}</p>
-              <p>อีเมล์: {userData.fname}</p>
-              <p>อีเมล์: {userData.lname}</p>
-              <p>อีเมล์: {userData.dept}</p>
               {/* แสดงรายละเอียดเพิ่มเติมของผู้ใช้ */}
               {/* ... */}
             </div>
@@ -74,7 +75,6 @@ function App() {
       ) : (
         <p>โทเค็นไม่ถูกต้องหรือหมดอายุ</p>
       )}
-      <button onClick={handleLogout}>ออกจากระบบ</button>
     </div>
   );
 }
