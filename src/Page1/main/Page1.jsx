@@ -1,67 +1,58 @@
-import React, { useState, useEffect } from "react";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import CssBaseline from "@mui/material/CssBaseline";
-import Container from "@mui/material/Container";
-import CCard from "../../Components/CardDemo/Card-withapi copy";
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import React, { useState } from "react";
 
-export default function QuantitySelect() {
-  const [maxWidth, setMaxWidth] = useState("xl");
+function App() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  React.useEffect(() => {
-    const handleResize = () => {
-      // ทำการตรวจสอบขนาดหน้าจอและกำหนด maxWidth ที่เหมาะสม
-      const screenWidth = window.innerWidth;
-      console.log(screenWidth);
-      if (screenWidth < 600) {
-        setMaxWidth("xl");
-      } else if (screenWidth < 960) {
-        setMaxWidth("sm");
-      } else if (screenWidth < 1280) {
-        setMaxWidth("md");
-      } else if (screenWidth < 1920) {
-        setMaxWidth("lg");
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://127.0.0.1:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        window.location.href = "/dashboard";
       } else {
-        setMaxWidth("xl");
+        console.error("Login failed:", data.message);
       }
-    };
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
+  };
 
-    // เพิ่ม event listener เมื่อขนาดหน้าจอเปลี่ยนแปลง
-    window.addEventListener("resize", handleResize);
-
-    // คำสั่งที่ใช้เมื่อคอมโพเนนต์ถูก unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Container maxWidth={maxWidth}>
-        <Box maxWidth={maxWidth} sx={{ height: 800, width: "100%" }}>
-          <Grid container spacing={2}>
-            <Grid item xl={12} lg={12} md={12}>
-              {/* <CCard /> */}
-            </Grid>
-            <Grid item xl={12} lg={12} md={12}></Grid>
-            <Grid item xl={12} lg={12} md={12}></Grid>
-            <Grid item xl={12} lg={12} md={12}></Grid>
-            <Grid item xl={12} lg={12} md={12}></Grid>
-            <Grid item xl={12} lg={12} md={12}></Grid>
-            <Grid item xl={12} lg={12} md={12}></Grid>
-            <Grid item xl={12} lg={12} md={12}></Grid>
-          </Grid>
-        </Box>
-      </Container>
-    </React.Fragment>
+    <div>
+      <h1>Login Page</h1>
+      <form onSubmit={handleLogin}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <br />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <br />
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 }
+
+export default App;
