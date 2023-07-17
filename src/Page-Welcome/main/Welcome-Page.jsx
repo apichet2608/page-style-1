@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../../Components/CardDemo/Card-withapi copy 2";
+import Card from "../../Components/other/Page-Components";
 const Page1 = () => {
   return (
     <div>
